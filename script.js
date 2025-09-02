@@ -1,41 +1,35 @@
-// ✅ Replace with your Firebase config from Firebase Console
+// ✅ Your Firebase config (copy from Firebase Console → Project Settings → Web App)
 const firebaseConfig = {
-  apiKey: "AIzaSyAvqgVXxjRQzuGOAXL6QqVZAQpln0QQLDU",
-  authDomain: "chat-app-d28ba.firebaseapp.com",
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://chat-app-d28ba-default-rtdb.firebaseio.com",
   projectId: "chat-app-d28ba",
-  storageBucket: "chat-app-d28ba.firebasestorage.app",
-  messagingSenderId: "586077386758",
-  appId: "1:586077386758:web:5bbb605d5672d714122b87",
-  measurementId: "G-FQQBFKNHMC"
-};
+  storageBucket: "chat-app-d28ba.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+// ✅ Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// Send message
+// ✅ Send message
 function sendMessage() {
-  let username = document.getElementById("username").value.trim();
-  let message = document.getElementById("message").value.trim();
+  const name = document.getElementById("name").value;
+  const message = document.getElementById("message").value;
 
-  if (username && message) {
-    db.ref("messages").push({
-      name: username,
-      text: message
-    });
-    document.getElementById("message").value = "";
-  }
+  db.ref("messages").push({
+    name: name,
+    text: message
+  });
+
+  document.getElementById("message").value = ""; // clear input
 }
 
-// Listen for messages in real-time
+// ✅ Listen for new messages
 db.ref("messages").on("child_added", function(snapshot) {
-  let msg = snapshot.val();
-  let div = document.createElement("div");
-  div.textContent = msg.name + ": " + msg.text;
-  document.getElementById("messages").appendChild(div);
-
-  // auto-scroll to latest
-  let messagesDiv = document.getElementById("messages");
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  const msg = snapshot.val();
+  const li = document.createElement("li");
+  li.textContent = msg.name + ": " + msg.text;
+  document.getElementById("messages").appendChild(li);
 });
