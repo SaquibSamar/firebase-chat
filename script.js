@@ -18,18 +18,35 @@ function sendMessage() {
   const name = document.getElementById("name").value;
   const message = document.getElementById("message").value;
 
+  if (name.trim() === "" || message.trim() === "") return;
+
   db.ref("messages").push({
     name: name,
-    text: message
+    text: message,
+    timestamp: Date.now()
   });
 
-  document.getElementById("message").value = ""; // clear input
+  document.getElementById("message").value = "";
 }
 
-// ✅ Listen for new messages
+// ✅ Listen for messages
 db.ref("messages").on("child_added", function(snapshot) {
   const msg = snapshot.val();
-  const li = document.createElement("li");
-  li.textContent = msg.name + ": " + msg.text;
-  document.getElementById("messages").appendChild(li);
+  const currentUser = document.getElementById("name").value;
+
+  const div = document.createElement("div");
+  div.classList.add("message");
+
+  if (msg.name === currentUser) {
+    div.classList.add("me");
+  } else {
+    div.classList.add("other");
+  }
+
+  div.textContent = msg.name + ": " + msg.text;
+  document.getElementById("messages").appendChild(div);
+
+  // Auto scroll to bottom
+  const chatBox = document.getElementById("messages");
+  chatBox.scrollTop = chatBox.scrollHeight;
 });
