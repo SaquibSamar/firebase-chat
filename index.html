@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Realtime Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="chat-container">
+    <h2>💬 Realtime Chat</h2>
+    <div id="messages"></div>
+
+    <input type="text" id="username" placeholder="Your name">
+    <input type="text" id="message" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
