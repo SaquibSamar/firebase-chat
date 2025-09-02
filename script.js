@@ -1,12 +1,12 @@
 // ✅ Your Firebase config (copy from Firebase Console → Project Settings → Web App)
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  apiKey: "AIzaSyAvqgVXxjRQzuGOAXL6QqVZAQpln0QQLDU",
+  authDomain: "chat-app-d28ba.firebaseapp.com",
   databaseURL: "https://chat-app-d28ba-default-rtdb.firebaseio.com",
   projectId: "chat-app-d28ba",
-  storageBucket: "chat-app-d28ba.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  storageBucket: "chat-app-d28ba.firebasestorage.app",
+  messagingSenderId: "586077386758",
+  appId: "1:586077386758:web:5bbb605d5672d714122b87"
 };
 
 // ✅ Initialize Firebase
